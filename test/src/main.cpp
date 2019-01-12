@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
 
-    gflags::SetUsageMessage("Runs the tests for codility");
+    gflags::SetUsageMessage("Runs the tests for leetcode");
     gflags::ParseCommandLineFlags(&argc, &argv, true);
 
     if ( argc > 1 ) {

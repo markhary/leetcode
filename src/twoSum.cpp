@@ -45,10 +45,10 @@ TEST(TwoSumsTest, CorrectSample)
     try {
         ASSERT_EQ(solution.twoSum(nums, target), correct);
     } catch (...) {
-        std::cout << "TwoSumsTest.CorrectSample: Exception thrown" << endl;
+        cout << "TwoSumsTest.CorrectSample:: Caught exception \"" << "\"\n";
     }
-}
 
+}
 
 TEST(TwoSumsTest, NoSolution)
 {

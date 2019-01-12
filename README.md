@@ -6,9 +6,10 @@ Here are my solutions to the LeetCode lessons.  You can find the lessons [here](
 
 Details Legend: D = *Difficulty*; S = *Score*; RT = *Runtime*
 
-Task - Solution | Details
---------------- | -------
-[TwoSum](https://leetcode.com/problems/two-sum/).[cpp](src/twoSum.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-97.83%25-green.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg) 
+No. | Task - Solution | Details
+--- | --------------- | -------
+1. | [TwoSum](https://leetcode.com/problems/two-sum/).[cpp](src/twoSum.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-97.83%25-green.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg) 
+2. | [AddTwoNumbers](https://leetcode.com/problems/add-two-numbers/).[cpp](src/addTwoNumbers.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-99.00%25-green.svg) ![](https://img.shields.io/badge/RT-28%20ms-lightgrey.svg) 
 
 <!--
 | *Lesson Template* | |

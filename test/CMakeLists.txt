@@ -76,5 +76,6 @@ include_directories(include ../include)
 
 add_executable (leetcode 
                 ../src/twoSum.cpp
+                ../src/addTwoNumbers.cpp
                 src/main.cpp)
 target_link_libraries(leetcode gflags::gflags gtest_main)
