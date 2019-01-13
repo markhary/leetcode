@@ -74,8 +74,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin/")
 
 include_directories(include ../include)
 
-add_executable (leetcode 
-                ../src/twoSum.cpp
-                ../src/addTwoNumbers.cpp
-                src/main.cpp)
+file(GLOB SOURCES "../src/*.cpp")
+
+add_executable (leetcode ${SOURCES} src/main.cpp)
 target_link_libraries(leetcode gflags::gflags gtest_main)

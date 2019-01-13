@@ -1,8 +1,8 @@
 // URL to leetcode exercise
 // 
-// Status: (Not) Accepted
-// Runtime: 8 ms
-// Score: X.Y %
+// Status: Accepted
+// Runtime: 8ms
+// Score: 97.83%
 //
 
 #include <iostream>
