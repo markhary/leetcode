@@ -11,6 +11,7 @@ Details Legend: D = *Difficulty*; S = *Score*; RT = *Runtime*
 1. | [TwoSum](https://leetcode.com/problems/two-sum/).[cpp](src/twoSum.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-97.83%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg) 
 2. | [AddTwoNumbers](https://leetcode.com/problems/add-two-numbers/).[cpp](src/addTwoNumbers.cpp) | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-99.00%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-28%20ms-lightgrey.svg) 
 4. | [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/).[cpp](src/findMedianSortedArrays.cpp) | ![](https://img.shields.io/badge/D-hard-red.svg) ![](https://img.shields.io/badge/S-91.99%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-40%20ms-lightgrey.svg)
+94.  | [BinaryTreeInorderTraversal](https://leetcode.com/problems/binary-tree-inorder-traversal/).[cpp](src/binaryTreeInorderTraversal.cpp) | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-100%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-0%20ms-lightgrey.svg)
 100. | [SameTree](https://leetcode.com/problems/same-tree/).[cpp](src/sameTree.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-76.32%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-4%20ms-lightgrey.svg)
 
 <!--
