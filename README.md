@@ -15,6 +15,7 @@ Details Legend: D = *Difficulty*; S = *Score*; RT = *Runtime*
 94 | [BinaryTreeInorderTraversal](https://leetcode.com/problems/binary-tree-inorder-traversal/).[cpp](src/binaryTreeInorderTraversal.cpp) | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-100%25-green.svg) ![](https://img.shields.io/badge/RT-0%20ms-lightgrey.svg)
 100 | [SameTree](https://leetcode.com/problems/same-tree/).[cpp](src/sameTree.cpp) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-76.32%25-yellow.svg) ![](https://img.shields.io/badge/RT-4%20ms-lightgrey.svg)
 175 | [CombineTwoTables](https://leetcode.com/problems/combine-two-tables/).[sql](sql/combineTwoTables.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-87.47%25-yellow.svg) ![](https://img.shields.io/badge/RT-208%20ms-lightgrey.svg)
+176 | [SecondHightestSalary](https://leetcode.com/problems/second-highest-salary/).[sql](sql/secondHighestSalary.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-84.77%25-yellow.svg) ![](https://img.shields.io/badge/RT-127%20ms-lightgrey.svg)
 
 <!--
 | *Lesson Template* | |
