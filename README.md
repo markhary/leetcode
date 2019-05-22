@@ -17,6 +17,7 @@ Details Legend: D = *Difficulty*; S = *Score*; RT = *Runtime*
 175 | [CombineTwoTables](https://leetcode.com/problems/combine-two-tables/).[sql](sql/combineTwoTables.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-87.47%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-208%20ms-lightgrey.svg)
 176 | [SecondHightestSalary](https://leetcode.com/problems/second-highest-salary/).[sql](sql/secondHighestSalary.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-84.77%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-127%20ms-lightgrey.svg)
 177 | [NthHightestSalary](https://leetcode.com/problems/nth-highest-salary/).[sql](sql/nthHighestSalary.sql) | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-14.10%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-212%20ms-lightgrey.svg)
+178 | [RankScores](https://leetcode.com/problems/rank-scores/).[sql](sql/rankScores.sql) | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-88.10%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-183%20ms-lightgrey.svg)
 181 | [EmployeesEarningMoreThanTheirManagers](https://leetcode.com/problems/employees-earning-more-than-their-managers/).[sql](sql/employeesEarningMoreThanTheirManagers.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-72.76%25-lightgrey.svg) ![](https://img.shields.io/badge/RT-298%20ms-lightgrey.svg)
 
 <!--
