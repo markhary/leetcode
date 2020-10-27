@@ -1,0 +1,7 @@
+[requires]
+gflags/2.2.2
+gtest/1.10.0
+
+[generators]
+cmake
+
