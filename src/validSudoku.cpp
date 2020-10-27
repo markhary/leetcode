@@ -1,8 +1,8 @@
 // https://leetcode.com/problems/valid-sudoku/
 //
 // Status: Accepted
-// Runtime: 36 ms
-// Score: 65.51 %
+// Runtime: 32 ms
+// Score: 81.45 %
 //
 
 #include <iostream>
@@ -41,23 +41,15 @@ public:
         values |= (1 << v);
     }
 
-    bool checkRow(int row, vector<vector<char>> &board)
+    bool checkRow(int row, int column, vector<vector<char>> &board, int &values)
     {
-        int values = 0;
-        for (int i = 0; i < 9; i++)
-        {
-            checkValue(board[row][i], values);
-        }
+        checkValue(board[row][column], values);
         return true;
     }
 
-    bool checkColumn(int column, vector<vector<char>> &board)
+    bool checkColumn(int row, int column, vector<vector<char>> &board, int &values)
     {
-        int values = 0;
-        for (int i = 0; i < 9; i++)
-        {
-            checkValue(board[i][column], values);
-        }
+        checkValue(board[row][column], values);
         return true;
     }
 
@@ -72,14 +64,10 @@ public:
         return board[row][col];
     }
 
-    bool checkBox(int box, vector<vector<char>> &board)
+    bool checkBox(int box, int cell, vector<vector<char>> &board, int &values)
     {
-        int values = 0;
-        for (int i = 0; i < 9; i++)
-        {
-            char c = getCell(box, i, board);
-            checkValue(c, values);
-        }
+        char c = getCell(box, cell, board);
+        checkValue(c, values);
         return true;
     }
 
@@ -87,11 +75,18 @@ public:
     {
         try
         {
+            // optimized by iterating only once through all three in two loops
             for (int i = 0; i < 9; i++)
             {
-                checkRow(i, board);
-                checkColumn(i, board);
-                checkBox(i, board);
+                int rowValues = 0;
+                int columnValues = 0;
+                int boxValues = 0;
+                for (int j = 0; j < 9; j++)
+                {
+                    checkRow(i, j, board, rowValues);
+                    checkColumn(j, i, board, columnValues); // row and column switched
+                    checkBox(i, j, board, boxValues);
+                }
             }
         }
         catch (...)
