@@ -24,7 +24,7 @@ public:
         {
             return 0;
         }
-        return c - 0x30;
+        return c - '0';
     }
 
     void checkValue(char c, int &values)
