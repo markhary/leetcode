@@ -1,9 +1,9 @@
 // https://leetcode.com/problems/sudoku-solver/
 // Many of these methods come from validSudoku.cpp
 //
-// Status: In progress
-// Runtime: - ms
-// Score: - %
+// Status: Accepted
+// Runtime: 1660 ms
+// Score: - 5.06%
 //
 
 #include <iostream>
@@ -50,7 +50,7 @@ public:
         }
     }
 
-    bool isValid(vector<vector<char>> board, int r, int c)
+    bool isValid(vector<vector<char>> &board, int r, int c)
     {
         try
         {
