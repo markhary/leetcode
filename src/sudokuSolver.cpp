@@ -31,15 +31,15 @@ public:
     // Only solve for N=9, but could expand generically
     Sudoku() : _R(3), _C(3), _solved(false)
     {
-        _N = _R * _C;
-        _cells = vector<vector<Cell>>(_N, vector<Cell>(_N));
+        _M = _R * _C;
+        _cells = vector<vector<Cell>>(_M, vector<Cell>(_M));
     }
 
     void display(vector<vector<char>> board)
     {
-        for (int r = 0; r < _N; r++)
+        for (int r = 0; r < _M; r++)
         {
-            for (int c = 0; c < _N; c++)
+            for (int c = 0; c < _M; c++)
             {
                 cout << board[r][c] << " ";
             }
@@ -52,12 +52,12 @@ public:
         try
         {
             // optimized by iterating only once through all three in two loops
-            for (int i = 0; i < _N; i++)
+            for (int i = 0; i < _M; i++)
             {
                 int rowValues = 0;
                 int columnValues = 0;
                 int boxValues = 0;
-                for (int j = 0; j < _N; j++)
+                for (int j = 0; j < _M; j++)
                 {
                     checkRow(i, j, board, rowValues);
                     checkColumn(j, i, board, columnValues); // row and column switched
@@ -75,9 +75,9 @@ public:
     void from(vector<vector<char>> &board)
     {
         _board = board;
-        for (int r = 0; r < _N; r++)
+        for (int r = 0; r < _M; r++)
         {
-            for (int c = 0; c < _N; c++)
+            for (int c = 0; c < _M; c++)
             {
                 char value = board[r][c];
                 _cells[r][c].row = r;
@@ -97,7 +97,8 @@ public:
 
     void solve()
     {
-        _board = solve(_board);
+        int count = countUnsolved(_board);
+        _board = solve(_board, count);
         _solved = true;
     }
 
@@ -112,49 +113,49 @@ public:
     }
 
 private:
-    vector<vector<char>> solve(vector<vector<char>> board)
+    vector<vector<char>> solve(vector<vector<char>> board, int unsolved)
     {
         vector<vector<char>> b = board;
 
-        for (int r = 0; r < _N; r++)
+        for (int r = 0; r < _M; r++)
         {
-            for (int c = 0; c < _N; c++)
+            for (int c = 0; c < _M; c++)
             {
                 if (b[r][c] != UNSOLVED)
                 {
                     continue;
                 }
 
-                for (int i = 0; i < _N; i++)
+                for (int i = 0; i < _M; i++)
                 {
                     b[r][c] = 0x31 + i;
                     if (isValid(b))
                     {
-                        if (check(b))
+                        int n = unsolved - 1;
+                        if (n == 0)
                         {
-                            return b;
+                            _solved = true;
                         }
                         else
                         {
-                            b = solve(b);
-                            if (check(b))
-                            {
-                                return b;
-                            }
+                            b = solve(b, n);
+                        }
+                        if (_solved)
+                        {
+                            return b;
                         }
                     }
                 }
             }
         }
-
         return board;
     }
 
     bool check(vector<vector<char>> &board)
     {
-        for (int r = 0; r < _N; r++)
+        for (int r = 0; r < _M; r++)
         {
-            for (int c = 0; c < _N; c++)
+            for (int c = 0; c < _M; c++)
             {
                 if (board[r][c] == UNSOLVED)
                 {
@@ -163,6 +164,22 @@ private:
             }
         }
         return true;
+    }
+
+    int countUnsolved(vector<vector<char>> &board)
+    {
+        int count = 0;
+        for (int r = 0; r < _M; r++)
+        {
+            for (int c = 0; c < _M; c++)
+            {
+                if (board[r][c] == UNSOLVED)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     int getVal(char c)
@@ -223,7 +240,7 @@ private:
     vector<vector<Cell>> _cells;
     int _R;
     int _C;
-    int _N;
+    int _M;
     bool _solved;
 };
 
