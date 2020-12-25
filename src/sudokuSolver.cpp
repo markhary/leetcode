@@ -32,18 +32,21 @@ public:
     Sudoku() : _R(3), _C(3), _solved(false)
     {
         _M = _R * _C;
+        _N = _M * _M;
         _cells = vector<vector<Cell>>(_M, vector<Cell>(_M));
     }
 
     void display(vector<vector<char>> board)
     {
-        for (int r = 0; r < _M; r++)
+        for (int n = 0; n < _N; n++)
         {
-            for (int c = 0; c < _M; c++)
+            int r = n2r(n);
+            int c = n2c(n);
+            cout << board[r][c] << " ";
+            if (c == (_M - 1))
             {
-                cout << board[r][c] << " ";
+                cout << endl;
             }
-            cout << endl;
         }
     }
 
@@ -75,17 +78,17 @@ public:
     void from(vector<vector<char>> &board)
     {
         _board = board;
-        for (int r = 0; r < _M; r++)
+        for (int n = 0; n < _N; n++)
         {
-            for (int c = 0; c < _M; c++)
+            int r = n2r(n);
+            int c = n2c(n);
+
+            char value = board[r][c];
+            _cells[r][c].row = r;
+            _cells[r][c].column = c;
+            if (value != UNSOLVED)
             {
-                char value = board[r][c];
-                _cells[r][c].row = r;
-                _cells[r][c].column = c;
-                if (value != UNSOLVED)
-                {
-                    _cells[r][c].candidates.clear();
-                }
+                _cells[r][c].candidates.clear();
             }
         }
     }
@@ -113,37 +116,47 @@ public:
     }
 
 private:
+    int n2r(int n)
+    {
+        return (n / _M);
+    }
+
+    int n2c(int n)
+    {
+        return (n % _M);
+    }
+
     vector<vector<char>> solve(vector<vector<char>> board, int unsolved)
     {
         vector<vector<char>> b = board;
 
-        for (int r = 0; r < _M; r++)
+        for (int n = 0; n < _N; n++)
         {
-            for (int c = 0; c < _M; c++)
-            {
-                if (b[r][c] != UNSOLVED)
-                {
-                    continue;
-                }
+            int r = n2r(n);
+            int c = n2c(n);
 
-                for (int i = 0; i < _M; i++)
+            if (b[r][c] != UNSOLVED)
+            {
+                continue;
+            }
+
+            for (int i = 0; i < _M; i++)
+            {
+                b[r][c] = 0x31 + i;
+                if (isValid(b))
                 {
-                    b[r][c] = 0x31 + i;
-                    if (isValid(b))
+                    int n = unsolved - 1;
+                    if (n == 0)
                     {
-                        int n = unsolved - 1;
-                        if (n == 0)
-                        {
-                            _solved = true;
-                        }
-                        else
-                        {
-                            b = solve(b, n);
-                        }
-                        if (_solved)
-                        {
-                            return b;
-                        }
+                        _solved = true;
+                    }
+                    else
+                    {
+                        b = solve(b, n);
+                    }
+                    if (_solved)
+                    {
+                        return b;
                     }
                 }
             }
@@ -153,14 +166,14 @@ private:
 
     bool check(vector<vector<char>> &board)
     {
-        for (int r = 0; r < _M; r++)
+        for (int n = 0; n < _N; n++)
         {
-            for (int c = 0; c < _M; c++)
+            int r = n2r(n);
+            int c = n2c(n);
+
+            if (board[r][c] == UNSOLVED)
             {
-                if (board[r][c] == UNSOLVED)
-                {
-                    return false;
-                }
+                return false;
             }
         }
         return true;
@@ -169,14 +182,13 @@ private:
     int countUnsolved(vector<vector<char>> &board)
     {
         int count = 0;
-        for (int r = 0; r < _M; r++)
+        for (int n = 0; n < _N; n++)
         {
-            for (int c = 0; c < _M; c++)
+            int r = n2r(n);
+            int c = n2c(n);
+            if (board[r][c] == UNSOLVED)
             {
-                if (board[r][c] == UNSOLVED)
-                {
-                    count++;
-                }
+                count++;
             }
         }
         return count;
@@ -241,6 +253,7 @@ private:
     int _R;
     int _C;
     int _M;
+    int _N;
     bool _solved;
 };
 
