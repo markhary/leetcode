@@ -50,22 +50,20 @@ public:
         }
     }
 
-    bool isValid(vector<vector<char>> board)
+    bool isValid(vector<vector<char>> board, int r, int c)
     {
         try
         {
-            // optimized by iterating only once through all three in two loops
+            int b = rc2b(r, c);
+
+            int rowValues = 0;
+            int columnValues = 0;
+            int boxValues = 0;
             for (int i = 0; i < _M; i++)
             {
-                int rowValues = 0;
-                int columnValues = 0;
-                int boxValues = 0;
-                for (int j = 0; j < _M; j++)
-                {
-                    checkRow(i, j, board, rowValues);
-                    checkColumn(j, i, board, columnValues); // row and column switched
-                    checkBox(i, j, board, boxValues);
-                }
+                checkRow(r, i, board, rowValues);
+                checkColumn(i, c, board, columnValues);
+                checkBox(b, i, board, boxValues);
             }
         }
         catch (...)
@@ -126,6 +124,11 @@ private:
         return (n % _M);
     }
 
+    int rc2b(int r, int c)
+    {
+        return (r / _R) * _R + (c / _C);
+    }
+
     vector<vector<char>> solve(vector<vector<char>> board, int unsolved)
     {
         vector<vector<char>> b = board;
@@ -143,7 +146,8 @@ private:
             for (int i = 0; i < _M; i++)
             {
                 b[r][c] = 0x31 + i;
-                if (isValid(b))
+
+                if (isValid(b, r, c))
                 {
                     int n = unsolved - 1;
                     if (n == 0)
@@ -160,7 +164,9 @@ private:
                     }
                 }
             }
+            return board;
         }
+
         return board;
     }
 
@@ -276,42 +282,6 @@ public:
 private:
     Sudoku _sudoku;
 };
-
-TEST(SudokuSolver, Valid)
-{
-    Sudoku sudoku;
-    vector<vector<char>> board =
-        {{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
-         {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
-         {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
-         {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
-         {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
-         {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
-         {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
-         {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
-         {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
-
-    sudoku.from(board);
-    ASSERT_EQ(sudoku.isValid(board), true);
-}
-
-TEST(SudokuSolver, Invalid)
-{
-    Sudoku sudoku;
-    vector<vector<char>> board =
-        {{'8', '3', '.', '.', '7', '.', '.', '.', '.'},
-         {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
-         {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
-         {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
-         {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
-         {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
-         {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
-         {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
-         {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
-
-    sudoku.from(board);
-    ASSERT_EQ(sudoku.isValid(board), false);
-}
 
 TEST(SudokuSolver, Solved)
 {
