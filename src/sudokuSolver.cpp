@@ -2,7 +2,7 @@
 // Many of these methods come from validSudoku.cpp
 //
 // Status: Accepted
-// Runtime: 1660 ms
+// Runtime: 1440 ms
 // Score: - 5.06%
 //
 
@@ -111,9 +111,11 @@ public:
 
     void solve()
     {
-        int count = countUnsolved(_cells);
-        _cells = solve(_cells, count);
-        _solved = true;
+        vector<Cell *> unsolved = getUnsolved(_cells);
+        _cells = solve(_cells, unsolved);
+
+        unsolved = getUnsolved(_cells);
+        _solved = (unsolved.size() == 0);
     }
 
     bool isSolved()
@@ -123,7 +125,8 @@ public:
 
     bool check()
     {
-        return (!countUnsolved(_cells));
+        vector<Cell *> unsolved = getUnsolved(_cells);
+        return (unsolved.size() == 0);
     }
 
 private:
@@ -142,19 +145,14 @@ private:
         return (r / _R) * _R + (c / _C);
     }
 
-    Cells solve(Cells board, int unsolved, int n_0 = 0)
+    Cells solve(Cells board, vector<Cell *> unsolved)
     {
         Cells b = board;
 
-        for (int n = n_0; n < _N; n++)
+        for (auto &cell : unsolved)
         {
-            int r = n2r(n);
-            int c = n2c(n);
-
-            if (b[r][c].value != UNSOLVED)
-            {
-                continue;
-            }
+            int r = n2r(cell->n);
+            int c = n2c(cell->n);
 
             for (int i = 0; i < _M; i++)
             {
@@ -162,14 +160,15 @@ private:
 
                 if (isValid(b, r, c))
                 {
-                    int u = unsolved - 1;
+                    int u = unsolved.size() - 1;
                     if (u == 0)
                     {
                         _solved = true;
                     }
                     else
                     {
-                        b = solve(b, u, n);
+                        vector<Cell *> un(unsolved.begin() + 1, unsolved.end());
+                        b = solve(b, un);
                     }
                     if (_solved)
                     {
@@ -183,19 +182,21 @@ private:
         return board;
     }
 
-    int countUnsolved(Cells &board)
+    vector<Cell *> getUnsolved(Cells &board)
     {
-        int count = 0;
+        vector<Cell *> unsolved;
+
         for (int n = 0; n < _N; n++)
         {
             int r = n2r(n);
             int c = n2c(n);
             if (board[r][c].value == UNSOLVED)
             {
-                count++;
+                unsolved.push_back(&board[r][c]);
             }
         }
-        return count;
+
+        return unsolved;
     }
 
     int getVal(char c)
