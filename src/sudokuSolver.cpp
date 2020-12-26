@@ -2,8 +2,8 @@
 // Many of these methods come from validSudoku.cpp
 //
 // Status: Accepted
-// Runtime: 1440 ms
-// Score: - 5.06%
+// Runtime: 260 ms
+// Score: - 9.93%
 //
 
 #include <iostream>
@@ -22,7 +22,7 @@ struct Cell
 {
     // Also keyed for N=9 and assuming numeric Sudoku
     int n;
-    int value{UNSOLVED};
+    char value{UNSOLVED};
 };
 
 typedef vector<vector<char>> Chars;
@@ -62,7 +62,7 @@ public:
         cout << (code ? "}" : "") << endl;
     }
 
-    bool isValid(Cells &board, int r, int c)
+    bool getCandidates(Cells &board, int r, int c, int &values)
     {
         try
         {
@@ -77,6 +77,7 @@ public:
                 checkColumn(i, c, board, columnValues);
                 checkBox(b, i, board, boxValues);
             }
+            values = (rowValues | columnValues | boxValues);
         }
         catch (...)
         {
@@ -154,26 +155,33 @@ private:
             int r = n2r(cell->n);
             int c = n2c(cell->n);
 
-            for (int i = 0; i < _M; i++)
+            int candidates = 0;
+            if (!getCandidates(b, r, c, candidates))
             {
-                b[r][c].value = 0x31 + i;
+                return board;
+            }
 
-                if (isValid(b, r, c))
+            for (int i = 1; i <= _M; i++)
+            {
+                if ((candidates & (1 << i)))
                 {
-                    int u = unsolved.size() - 1;
-                    if (u == 0)
-                    {
-                        _solved = true;
-                    }
-                    else
-                    {
-                        vector<Cell *> un(unsolved.begin() + 1, unsolved.end());
-                        b = solve(b, un);
-                    }
-                    if (_solved)
-                    {
-                        return b;
-                    }
+                    continue;
+                }
+                b[r][c].value = 0x30 + i;
+
+                int u = unsolved.size() - 1;
+                if (u == 0)
+                {
+                    _solved = true;
+                }
+                else
+                {
+                    vector<Cell *> un(unsolved.begin() + 1, unsolved.end());
+                    b = solve(b, un);
+                }
+                if (_solved)
+                {
+                    return b;
                 }
             }
             return board;
