@@ -2,8 +2,8 @@
 // Many of these methods come from validSudoku.cpp
 //
 // Status: Accepted
-// Runtime: 260 ms
-// Score: - 9.93%
+// Runtime: 84 ms
+// Score: - 20.93%
 //
 
 #include <iostream>
@@ -96,6 +96,10 @@ public:
             char value = board[r][c];
             _cells[r][c].n = n;
             _cells[r][c].value = value;
+            if (value == UNSOLVED)
+            {
+                _unsolved.push_back(&_cells[r][c]);
+            }
         }
     }
 
@@ -112,11 +116,8 @@ public:
 
     void solve()
     {
-        vector<Cell *> unsolved = getUnsolved(_cells);
-        _cells = solve(_cells, unsolved);
-
-        unsolved = getUnsolved(_cells);
-        _solved = (unsolved.size() == 0);
+        _cells = solve(_cells, _unsolved);
+        _solved = true;
     }
 
     bool isSolved()
@@ -261,6 +262,7 @@ private:
     }
 
 private:
+    vector<Cell *> _unsolved;
     Cells _cells;
     int _R;
     int _C;
