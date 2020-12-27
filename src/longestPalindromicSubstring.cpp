@@ -1,8 +1,8 @@
 // https://leetcode.com/problems/longest-palindromic-substring
 //
-// Status: Time limit exceeded
-// Runtime: -
-// Score: -
+// Status: Accepted
+// Runtime: 144 ms
+// Score: 46.46%
 //
 
 #include <algorithm>
@@ -66,17 +66,6 @@ public:
     int last;
   };
 
-  string longer(string &s1, string &s2)
-  {
-    string longest = s1;
-    if (s2.length() > s1.length())
-    {
-      longest = s2;
-    }
-
-    return longest;
-  }
-
   string longestPalindrome(string s)
   {
     int n = s.length();
@@ -90,23 +79,33 @@ public:
 
     // Centered substrings of a palindrome are also palindromes, therefore
     // find all small palindromes and grow them - list will get shorter
-    string longest = "";
+    int start = 0;
+    int length = 0;
+
     for (int i = 0; i < n; i++)
     {
       palindromes.push_back(substring({i, i}));
       string candidate = s.substr(i, 1);
-      longest = longer(longest, candidate);
+      if (1 > length)
+      {
+        start = i;
+        length = 1;
+      }
       if (((i + 1) < n) && (s[i] == s[i + 1]))
       {
         palindromes.push_back(substring({i, i + 1}));
         string candidate = s.substr(i, 2);
-        longest = longer(longest, candidate);
+        if (2 > length)
+        {
+          start = i;
+          length = 2;
+        }
       }
     }
 
     while (!palindromes.empty())
     {
-      palindromes.remove_if([this, &longest, &n, &s](auto &p) {
+      palindromes.remove_if([&start, &length, &n, &s](auto &p) {
         if (((p.first - 1) >= 0) &&
             ((p.last + 1) < n) &&
             (s[p.first - 1] == s[p.last + 1]))
@@ -114,15 +113,19 @@ public:
           p.first--;
           p.last++;
 
-          string candidate = s.substr(p.first, p.last - p.first + 1);
-          longest = longer(longest, candidate);
+          int l = p.last - p.first + 1;
+          if (l > length)
+          {
+            start = p.first;
+            length = l;
+          }
           return false;
         }
         return true;
       });
     }
 
-    return longest;
+    return s.substr(start, length);
   }
 };
 
