@@ -80,17 +80,13 @@ public:
     // Centered substrings of a palindrome are also palindromes, therefore
     // find all small palindromes and grow them - list will get shorter
     int start = 0;
-    int length = 0;
+    int length = 1;
 
+    // Find all of the palindromes of length 1 and 2
     for (int i = 0; i < n; i++)
     {
       palindromes.push_back(substring({i, i}));
       string candidate = s.substr(i, 1);
-      if (1 > length)
-      {
-        start = i;
-        length = 1;
-      }
       if (((i + 1) < n) && (s[i] == s[i + 1]))
       {
         palindromes.push_back(substring({i, i + 1}));
