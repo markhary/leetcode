@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/binary-tree-inorder-traversal/
-// 
+//
 // Status: Accepted
 // Runtime: 0 ms
 // Score: 100 %
@@ -10,41 +10,41 @@
 
 #include <gtest/gtest.h>
 #include "args.h"
+#include "leetcode.h"
 #include "macros.h"
 
 using namespace std;
 
- struct TreeNode {
-     int val;
-     TreeNode *left;
-     TreeNode *right;
-     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- };
-
-class Solution {
-    public:
-    vector<int> inorderTraversal(TreeNode* root) {
+class Solution
+{
+public:
+    vector<int> inorderTraversal(TreeNode *root)
+    {
         // inorder traversal is Left-Root-Right
         vector<int> answer;
 
         // Don't do anything if root is null
-        if ( root != nullptr ) {
+        if (root != nullptr)
+        {
             // Handle the left root
-            if ( root->left != nullptr ) {
+            if (root->left != nullptr)
+            {
                 vector<int> temp = inorderTraversal(root->left);
                 answer.insert(answer.end(), temp.begin(), temp.end());
             }
             // handle the Root
-            if (root != nullptr) {
+            if (root != nullptr)
+            {
                 answer.push_back(root->val);
-            } 
-            
+            }
+
             // handle Right
-            if (root->right != nullptr){
+            if (root->right != nullptr)
+            {
                 vector<int> temp = inorderTraversal(root->right);
                 answer.insert(answer.end(), temp.begin(), temp.end());
-            } 
-        } 
+            }
+        }
 
         return answer;
     }
