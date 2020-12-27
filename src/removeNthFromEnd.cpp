@@ -5,28 +5,61 @@
 // Score: 100%
 //
 
+#include <array>
 #include <iostream>
 #include <vector>
 
 #include <gtest/gtest.h>
 #include "args.h"
+#include "leetcode.h"
 #include "macros.h"
 
 using namespace std;
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution
 {
 public:
+    ListNode *to_list(vector<int> input, vector<ListNode> &nodes)
+    {
+        ListNode *head = NULL;
+        if (input.size())
+        {
+            head = &nodes[0];
+
+            int i = 0;
+            ListNode *prev = NULL;
+
+            for (auto &v : input)
+            {
+                nodes[i].val = v;
+                nodes[i].next = NULL;
+
+                if (prev)
+                {
+                    prev->next = &nodes[i];
+                }
+                prev = &nodes[i];
+                i++;
+            }
+        }
+
+        return head;
+    }
+
+    vector<int> from_list(ListNode *head)
+    {
+        vector<int> output;
+
+        ListNode *node = head;
+        while (node)
+        {
+            output.push_back(node->val);
+            node = node->next;
+        }
+
+        return output;
+    }
+
     ListNode *removeNthFromEnd(ListNode *head, int n)
     {
         std::array<ListNode *, 30> nodes;
@@ -51,40 +84,21 @@ public:
             prev->next = nodes[del]->next;
         }
 
-        delete node;
         return head;
     }
 };
 
-TEST(Solution, CorrectTest)
+TEST(RemoveNthFromEnd, Example)
 {
     Solution solution;
-    bool correct = true;
+    vector<int> input{1, 2, 3, 4, 5};
+    vector<int> output{1, 2, 3, 5};
+    int n = 2;
 
-    try
-    {
-        ASSERT_EQ(solution.solution(false), correct);
-    }
-    catch (const exception &e)
-    {
-        std::cout << "Solution.CorrectTest: Exception - " << e.what() << endl;
-    }
-}
+    vector<ListNode> inputNodes(input.size()), outputNodes;
 
-TEST(Solution, NoSolution)
-{
-    bool exceptionThrown = false;
-    bool ignoreAnswer = true;
-
-    try
-    {
-        Solution solution;
-        ignoreAnswer = solution.solution(true);
-    }
-    catch (const exception &e)
-    {
-        exceptionThrown = true;
-    }
-
-    ASSERT_EQ(exceptionThrown, true);
+    ListNode *input_list = solution.to_list(input, inputNodes);
+    ListNode *output_nodes = solution.removeNthFromEnd(input_list, n);
+    vector<int> answer = solution.from_list(output_nodes);
+    ASSERT_EQ(answer, output);
 }

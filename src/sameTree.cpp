@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/same-tree/
-// 
+//
 // Status: Accepted
 // Runtime: 8ms
 // Score: 97.83%
@@ -10,32 +10,31 @@
 
 #include <gtest/gtest.h>
 #include "args.h"
+#include "leetcode.h"
 #include "macros.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+class Solution
+{
+public:
+    bool isSameTree(TreeNode *p, TreeNode *q)
+    {
+        bool same = true;
 
-class Solution {
-    public:
-        bool isSameTree(TreeNode* p, TreeNode* q) {
-            bool same = true;
-
-            if ( p && q ) {
-                return ((p->val == q->val) && 
-                        (isSameTree(p->left, q->left)) &&
-                        (isSameTree(p->right, q->right)));
-            } else if ( p || q) {
-                same = false;
-            }
-
-            return same;
+        if (p && q)
+        {
+            return ((p->val == q->val) &&
+                    (isSameTree(p->left, q->left)) &&
+                    (isSameTree(p->right, q->right)));
         }
+        else if (p || q)
+        {
+            same = false;
+        }
+
+        return same;
+    }
 };
 
 TEST(SameTree, Sample)
