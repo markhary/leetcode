@@ -4,6 +4,15 @@
 
 Here are my solutions to the LeetCode lessons. You can find the lessons [here](https://leetcode.com/problemset/all/).
 
+The score color scheme is for me to call myself out and try harder to improve for suboptimal solutions. The difficulty colors are otherwise meaningless other than to brag that I have tried some hard problems (those being red).
+
+Here is the score color key:
+
+* Green >= 90%
+* 70% <= Yellow < 90%
+* Red < 70% and accepted solution
+* Grey is work in progress, not accepted, or exceeded time limits.
+
 Details Legend: D = _Difficulty_; S = _Score_; RT = _Runtime_
 
 | \#  | Task - Solution                                                                                                                                                              | Details                                                                                                                                                                      |
@@ -17,8 +26,9 @@ Details Legend: D = _Difficulty_; S = _Score_; RT = _Runtime_
 | 36  | [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/).[cpp](src/validSudoku.cpp)                                                                                       | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-81.5%25-yellow) ![](https://img.shields.io/badge/RT-32%20ms-lightgrey.svg)          |
 | 37  | [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/).[cpp](src/sudokuSolver.cpp)                                                                                    | ![](https://img.shields.io/badge/D-hard-red.svg) ![](https://img.shields.io/badge/S-20.93%25-red) ![](https://img.shields.io/badge/RT-84%20ms-lightgrey.svg)          |
 | 94  | [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/).[cpp](src/binaryTreeInorderTraversal.cpp)                                      | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-100%25-green.svg) ![](https://img.shields.io/badge/RT-0%20ms-lightgrey.svg)         |
-| 98  | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/).[cpp](src/validateBinarySearchTree.cpp)                                      | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-90.53%25-green.svg) ![](https://img.shields.io/badge/RT-0%12ms-lightgrey.svg)         |
+| 98  | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/).[cpp](src/validateBinarySearchTree.cpp)                                      | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-90.53%25-green.svg) ![](https://img.shields.io/badge/RT-12%20ms-lightgrey.svg)         |
 | 100 | [Same Tree](https://leetcode.com/problems/same-tree/).[cpp](src/sameTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-76.32%25-yellow.svg) ![](https://img.shields.io/badge/RT-4%20ms-lightgrey.svg)         |
+| 104 | [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/).[cpp](src/maximumDepthBinaryTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-89.25%25-yellow.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg)         |
 | 175 | [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/).[sql](sql/combineTwoTables.sql)                                                                      | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-87.47%25-yellow.svg) ![](https://img.shields.io/badge/RT-208%20ms-lightgrey.svg)    |
 | 176 | [Second Hightest Salary](https://leetcode.com/problems/second-highest-salary/).[sql](sql/secondHighestSalary.sql)                                                            | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-84.77%25-yellow.svg) ![](https://img.shields.io/badge/RT-127%20ms-lightgrey.svg)    |
 | 177 | [Nth Hightest Salary](https://leetcode.com/problems/nth-highest-salary/).[sql](sql/nthHighestSalary.sql)                                                                     | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-14.10%25-red.svg) ![](https://img.shields.io/badge/RT-212%20ms-lightgrey.svg) |
@@ -51,7 +61,7 @@ Assuming you are using cmake, tests will be located in your `$BUILD_DIR}/bin` di
 
 ### Dependencies
 
-Test are built using the following packages. Use CMake and the dependencies will be downloaded and built for you.
+Binaries are built using *conan* and *cmake*. Dependencies will be downloaded and built automatically.
 
 - [gflags](https://gflags.github.io/gflags/)
 - [googletest](https://github.com/google/googletest)
