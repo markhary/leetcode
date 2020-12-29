@@ -6,7 +6,7 @@ Here are my C++ solutions to the LeetCode lessons. You can find the lessons [her
 
 My purpose is to learn and document the algorithms that I come up with on my own. I do not find the fastest solution available online and code it up ... that defeats the purpose of this library.
 
-The score color scheme helps me work harder to improve suboptimal solutions. The difficulty colors are otherwise meaningless other than to brag that I have tried some hard problems (those being red).
+The difficulty color scheme serve only to brag that I have tried some hard problems (easy/medium/hard = green/yellow/red). The score color scheme helps me work harder to improve suboptimal solutions.
 
 Here is the score color key:
 
