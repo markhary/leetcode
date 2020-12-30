@@ -1,8 +1,8 @@
 // https://leetcode.com/problems/linked-list-cycle/
 //
 // Status: Accepted
-// Runtime: 20 ms
-// Score: 13.67 %
+// Runtime: 4 ms
+// Score: 98.78 %
 //
 
 #include <iostream>
@@ -19,7 +19,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool hasCycle(ListNode *head)
+    bool hash(ListNode *head)
     {
         unordered_map<ListNode *, int> nodes;
 
@@ -37,6 +37,44 @@ public:
         }
 
         return false;
+    }
+
+    bool fast(ListNode *head)
+    {
+        ListNode *slow = head;
+        if (slow == NULL)
+        {
+            return false;
+        }
+
+        ListNode *fast = head->next;
+        if (fast == NULL)
+        {
+            return false;
+        }
+
+        // one goes fast, one goes slow. If we reach a NULL, there is no cycle,
+        // otherwise if they overlap, then there is a cycle. Think of this like
+        // two runners going around a track - eventually the faster runner will
+        // loop past the other one, but they'll be at the same spot
+
+        while (slow != fast)
+        {
+            if (!fast->next || !fast->next->next)
+            {
+                return false;
+            }
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        return true;
+    }
+
+    bool hasCycle(ListNode *head)
+    {
+        //return hash(head);
+        return fast(head);
     }
 };
 
