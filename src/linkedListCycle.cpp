@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/linked-list-cycle/
 //
 // Status: Accepted
-// Runtime: 4 ms
+// Runtime: 20 ms
 // Score: 98.78 %
 //
 
