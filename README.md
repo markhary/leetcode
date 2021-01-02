@@ -4,9 +4,7 @@
 
 Here are my C++ solutions to the LeetCode lessons. You can find the lessons [here](https://leetcode.com/problemset/all/).
 
-My purpose is to teach and document the algorithms that I come up with. I generally do not find the fastest solution available online ... that defeats the purpose of this library, although I will sometimes do so if I understand the solution and it is a foundational technique.
-
-The difficulty color scheme serve only to brag that I have tried some hard problems (easy/medium/hard = green/yellow/red). The score color scheme helps me work harder to improve suboptimal solutions.
+The difficulty color scheme quickly indicates the difficulty of the problem (easy/medium/hard = green/yellow/red). The score color scheme helps me work harder to improve suboptimal solutions.
 
 Here is the score color key:
 
@@ -32,7 +30,7 @@ Details Legend: D = _Difficulty_; S = _Score_; RT = _Runtime_
 | 100 | [Same Tree](https://leetcode.com/problems/same-tree/).[cpp](src/sameTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-76.32%25-yellow.svg) ![](https://img.shields.io/badge/RT-4%20ms-lightgrey.svg)         |
 | 104 | [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/).[cpp](src/maximumDepthBinaryTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-89.25%25-yellow.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg)         |
 | 141 | [LinkedListCycle](https://leetcode.com/problems/linked-list-cycle/).[cpp](src/maximumDepthBinaryTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-98.78%25-green.svg) ![](https://img.shields.io/badge/RT-4%20ms-lightgrey.svg)         |
-| 142 | [LinkedListCycleII](https://leetcode.com/problems/linked-list-cycle-ii/).[cpp](src/maximumDepthBinaryTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-17.31%25-red.svg) ![](https://img.shields.io/badge/RT-20%20ms-lightgrey.svg)         |
+| 142 | [LinkedListCycleII](https://leetcode.com/problems/linked-list-cycle-ii/).[cpp](src/maximumDepthBinaryTree.cpp)                                                                                                | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-71.74%25-yellow.svg) ![](https://img.shields.io/badge/RT-8%20ms-lightgrey.svg)         |
 | 175 | [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/).[sql](sql/combineTwoTables.sql)                                                                      | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-87.47%25-yellow.svg) ![](https://img.shields.io/badge/RT-208%20ms-lightgrey.svg)    |
 | 176 | [Second Hightest Salary](https://leetcode.com/problems/second-highest-salary/).[sql](sql/secondHighestSalary.sql)                                                            | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-84.77%25-yellow.svg) ![](https://img.shields.io/badge/RT-127%20ms-lightgrey.svg)    |
 | 177 | [Nth Hightest Salary](https://leetcode.com/problems/nth-highest-salary/).[sql](sql/nthHighestSalary.sql)                                                                     | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-14.10%25-red.svg) ![](https://img.shields.io/badge/RT-212%20ms-lightgrey.svg) |

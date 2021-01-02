@@ -1,8 +1,8 @@
 // https://leetcode.com/problems/linked-list-cycle-ii/
 //
 // Status: Accepted
-// Runtime: 20 ms
-// Score: 17.31 %
+// Runtime: 8 ms
+// Score: 71.74 %
 //
 
 #include <array>
@@ -41,13 +41,9 @@ public:
     ListNode *race(ListNode *head)
     {
         ListNode *slow = head;
-        if (slow == nullptr)
-        {
-            return nullptr;
-        }
+        ListNode *fast = slow;
 
-        ListNode *fast = head->next;
-        if (fast == NULL)
+        if (head == nullptr)
         {
             return nullptr;
         }
@@ -56,10 +52,10 @@ public:
         // otherwise if they overlap, then there is a cycle. Think of this like
         // two runners going around a track - eventually the faster runner will
         // loop past the other one, but they'll be at the same spot
-        int original = 0;
-        while (slow != fast)
+        int distance = 0;
+        while (!distance || (slow != fast))
         {
-            original++;
+            distance++;
             if (!fast->next || !fast->next->next)
             {
                 return nullptr;
@@ -68,39 +64,23 @@ public:
             fast = fast->next->next;
         }
 
-        // We have a cycle, now figure out how long the cycle is
-        // by counting the nodes until we lap
-        int cycleLength = 0;
-        while (!cycleLength || (slow != fast))
+        // Advance each node until they intersect again
+        ListNode *intersection = fast;
+        slow = head;
+
+        while (slow != intersection)
         {
-            cycleLength++;
             slow = slow->next;
-            fast = fast->next->next;
+            intersection = intersection->next;
         }
 
-        int offset = original - cycleLength;
-        PRINT_VAR(original);
-        PRINT_VAR(cycleLength);
-        PRINT_VAR(offset);
-
-        if (offset < 0)
-        {
-            return nullptr;
-        }
-
-        ListNode *node = head;
-        while (offset--)
-        {
-            node = node->next;
-        }
-
-        return node;
+        return slow;
     }
 
     ListNode *detectCycle(ListNode *head)
     {
-        //return race(head);
-        return hash(head);
+        return race(head);
+        //return hash(head);
     }
 };
 
@@ -162,20 +142,39 @@ TEST(LinkedListCycleII, Cycle5)
     ASSERT_EQ(solution.detectCycle(head), &node1);
 }
 
-TEST(LinkedListCycleII, Cycle10)
+TEST(LinkedListCycleII, Sweep)
 {
     Solution solution;
-    const int N = 10;
-    array<ListNode, 10> nodes;
-    ListNode *head = &nodes[0];
 
-    for (int n = 0; n < (N - 1); n++)
+    const int N = 20;
+
+    int tests = 0;
+    int passed = 0;
+    for (int n = 1; n < N; n++)
     {
-        nodes[n].val = n;
-        nodes[n].next = &nodes[n + 1];
-    }
-    nodes[N - 1].val = N - 1;
-    nodes[N - 1].next = &nodes[2];
+        array<ListNode, N> nodes;
+        ListNode *head = &nodes[0];
 
-    ASSERT_EQ(solution.detectCycle(head), &nodes[2]);
+        for (int m = 0; m < n; m++)
+        {
+            nodes[m].val = m;
+            nodes[m].next = &nodes[m + 1];
+        }
+
+        for (int m = 0; m < n; m++)
+        {
+            tests++;
+            nodes[n - 1].next = &nodes[m];
+
+            ListNode *node = solution.detectCycle(head);
+            EXPECT_EQ(node, &nodes[m]);
+
+            bool result = (node == &nodes[m]);
+            if (result)
+            {
+                passed++;
+            }
+        }
+    }
+    ASSERT_EQ(tests, passed);
 }
