@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/two-sum/
-// 
+//
 // Status: Accepted
 // Runtime: 28 ms
 // Score: 99.00%
@@ -17,79 +17,84 @@
 
 using namespace std;
 
-#define PRINT_LISTNODE(X) { \
-    cout << #X << ": " << ((X == nullptr) ? "nullptr" : "") << endl; \
-    ListNode *x = X; \
-    while (x != nullptr) {\
-        cout << " " << #X << " -> " << x->val << endl; \
-        x = x->next; \
-    } \
-}
-
 // Defined in problem
-struct ListNode {
+struct ListNode
+{
     int val;
     ListNode *next;
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Solution {
-    public:
-        ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
+class Solution
+{
+public:
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+    {
+        // Handle case when one of the numbers is null
+        if (!l1 && !l2)
         {
-            // Handle case when one of the numbers is null
-            if (!l1 && !l2) {
-                cout << "somebody was null" << endl;
-                return nullptr;
-            }
-
-            ListNode *answer = nullptr;
-            ListNode *ln = nullptr;
-
-            int carryover = 0;
-
-            // go through and add numbers, linked lists may not be the same length
-            do {
-                int sum = carryover;
-                if ( l1 ) { 
-                    sum += l1->val;
-                }
-                if ( l2 ) {
-                    sum += l2->val;   
-                }
-
-                int remainder = sum % 10;
-                carryover = sum / 10;
-
-                ListNode *node = new ListNode(remainder);
-                if (answer == nullptr) {
-                    answer = node;
-                    ln = node;
-                } else {
-                    ln->next = node;
-                    ln = node;
-                }
-                if ( l1 ) {
-                    l1 = l1->next;
-                }
-                if (l2 ) {
-                    l2 = l2->next;
-                }
-            } while (l1 || l2);
-
-            // Finally, it is possible the answer may be longer than either of the original
-            // linked lists, as indicated by carryover, so add that if carryover is not 0
-            if ( carryover ) {
-                ListNode *node = new ListNode(carryover);
-                ln->next = node;
-            }
-
-            return answer;
+            cout << "somebody was null" << endl;
+            return nullptr;
         }
+
+        ListNode *answer = nullptr;
+        ListNode *ln = nullptr;
+
+        int carryover = 0;
+
+        // go through and add numbers, linked lists may not be the same length
+        do
+        {
+            int sum = carryover;
+            if (l1)
+            {
+                sum += l1->val;
+            }
+            if (l2)
+            {
+                sum += l2->val;
+            }
+
+            int remainder = sum % 10;
+            carryover = sum / 10;
+
+            ListNode *node = new ListNode(remainder);
+            if (answer == nullptr)
+            {
+                answer = node;
+                ln = node;
+            }
+            else
+            {
+                ln->next = node;
+                ln = node;
+            }
+            if (l1)
+            {
+                l1 = l1->next;
+            }
+            if (l2)
+            {
+                l2 = l2->next;
+            }
+        } while (l1 || l2);
+
+        // Finally, it is possible the answer may be longer than either of the original
+        // linked lists, as indicated by carryover, so add that if carryover is not 0
+        if (carryover)
+        {
+            ListNode *node = new ListNode(carryover);
+            ln->next = node;
+        }
+
+        return answer;
+    }
 };
 
-namespace addTwoNumbers {
-    namespace test {
+namespace addTwoNumbers
+{
+    namespace test
+    {
         // Create a new list node, don't forget to free
         ListNode *create(int number)
         {
@@ -98,13 +103,15 @@ namespace addTwoNumbers {
 
             do
             {
-                ListNode *ln = new ListNode(number%10);
+                ListNode *ln = new ListNode(number % 10);
                 number /= 10;
 
-                if (first == nullptr) {
+                if (first == nullptr)
+                {
                     first = ln;
                 }
-                if ( prev != nullptr ) {
+                if (prev != nullptr)
+                {
                     prev->next = ln;
                 }
                 prev = ln;
@@ -117,14 +124,16 @@ namespace addTwoNumbers {
         // Turn the ListNode back into an int
         int unpack(ListNode *listNode)
         {
-            if ( listNode == nullptr ) {
+            if (listNode == nullptr)
+            {
                 throw "unpack: nullptr passed in";
             }
 
             int number = 0;
             int i = 0;
             ListNode *ln = listNode;
-            while ( ln != nullptr ) {
+            while (ln != nullptr)
+            {
                 number += (ln->val * pow(10, i));
                 ln = ln->next;
                 i++;
@@ -136,18 +145,20 @@ namespace addTwoNumbers {
         // Free the allocated memory
         void free(ListNode *ln)
         {
-            if ( ln == nullptr ) {
+            if (ln == nullptr)
+            {
                 throw "unpack: nullptr passed in";
             }
 
-            while (ln != nullptr) {
-                ListNode* next = ln->next;
+            while (ln != nullptr)
+            {
+                ListNode *next = ln->next;
                 delete ln;
                 ln = next;
             }
         }
-    };
-};
+    }; // namespace test
+};     // namespace addTwoNumbers
 
 TEST(AddTwoNumbersTest, CorrectSample)
 {
@@ -161,13 +172,16 @@ TEST(AddTwoNumbersTest, CorrectSample)
     int answerInteger = 0;
     int lookingFor = firstNumber + secondNumber;
 
-    try {
+    try
+    {
         ListNode *answer = solution.addTwoNumbers(first, second);
         answerInteger = addTwoNumbers::test::unpack(answer);
         addTwoNumbers::test::free(answer);
         addTwoNumbers::test::free(first);
         addTwoNumbers::test::free(second);
-    } catch (...) {
+    }
+    catch (...)
+    {
         cout << "TwoSumsTest.CorrectSample:: Caught exception" << endl;
     }
 

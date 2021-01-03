@@ -10,6 +10,17 @@ struct ListNode
   ListNode(int x, ListNode *n) : val(x), next(n) {}
 };
 
+#define PRINT_LISTNODE(X)                                            \
+  {                                                                  \
+    cout << #X << ": " << ((X == nullptr) ? "nullptr" : "") << endl; \
+    ListNode *x = X;                                                 \
+    while (x != nullptr)                                             \
+    {                                                                \
+      cout << " " << #X << " -> " << x->val << endl;                 \
+      x = x->next;                                                   \
+    }                                                                \
+  }
+
 struct TreeNode
 {
   int val;
