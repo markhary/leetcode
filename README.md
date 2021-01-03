@@ -4,8 +4,6 @@
 
 Here are my C++ solutions to the LeetCode lessons. You can find the lessons [here](https://leetcode.com/problemset/all/).
 
-The difficulty color scheme quickly indicates the difficulty of the problem (easy/medium/hard = green/yellow/red). The score color scheme helps me work harder to improve suboptimal solutions.
-
 Here is the score color key:
 
 * Green >= 90%
@@ -36,6 +34,7 @@ Details Legend: D = _Difficulty_; S = _Score_; RT = _Runtime_
 | 177 | [Nth Hightest Salary](https://leetcode.com/problems/nth-highest-salary/).[sql](sql/nthHighestSalary.sql)                                                                     | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-14.10%25-red.svg) ![](https://img.shields.io/badge/RT-212%20ms-lightgrey.svg) |
 | 178 | [Rank Scores](https://leetcode.com/problems/rank-scores/).[sql](sql/rankScores.sql)                                                                                          | ![](https://img.shields.io/badge/D-medium-yellow.svg) ![](https://img.shields.io/badge/S-88.10%25-yellow.svg) ![](https://img.shields.io/badge/RT-183%20ms-lightgrey.svg) |
 | 181 | [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/).[sql](sql/employeesEarningMoreThanTheirManagers.sql) | ![](https://img.shields.io/badge/D-easy-green.svg) ![](https://img.shields.io/badge/S-72.76%25-yellow.svg) ![](https://img.shields.io/badge/RT-298%20ms-lightgrey.svg)    |
+| 204 | [Count Primes](https://leetcode.com/problems/count-primes/).[cpp](src/countPrimes.cpp) | ![](https://img.shields.io/badge/D-easy-medium.svg) ![](https://img.shields.io/badge/S-97.57%25-green.svg) ![](https://img.shields.io/badge/RT-16%20ms-lightgrey.svg)    |
 | 735 | [Asteroid Collision](https://leetcode.com/problems/asteroid-collision/).[cpp](src/asteroidCollision.cpp) | ![](https://img.shields.io/badge/D-easy-medium.svg) ![](https://img.shields.io/badge/S-71.64%25-yellow.svg) ![](https://img.shields.io/badge/RT-24%20ms-lightgrey.svg)    |
 
 <!--
