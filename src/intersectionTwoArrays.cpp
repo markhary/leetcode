@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/intersection-of-two-arrays/v
+// https://leetcode.com/problems/intersection-of-two-arrays/
 //
 // Status: Accepted
 // Runtime: 4 ms

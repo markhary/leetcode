@@ -5,7 +5,6 @@
 // Score: 98.21 %
 //
 
-#include <iostream>
 #include <numeric>
 #include <vector>
 
